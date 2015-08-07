@@ -35,4 +35,23 @@ rm -f $(find / -name core) &>/dev/null
 
 #!/bin/bash
 ls -l | sed -e "s/[aeio]/u/g"
+#执行ls -l这条命令后，然后再执行后面的命令，后面的命令的意思是把[aeio]这4个字符
+#用u来替换，g是终止这条命令的意思，s则是一个正则表达式的参数的意思。
 
+ls -l | grep "\.txt$"
+#执行ls -l的命令后,执行grep命令。将列出来的信息匹配到"\.txt$"这个正则表达式中。
+ 
+
+#变量
+
+#!/bin/bash
+STR="Hello World"
+echo $STR
+#这是一个简单的输出shell，STR是一个变量，而后面的Hello World为这个变量定义的内容#变量的=号两边不能加空格，而要是定义的内容中有空格的话要用双引号括起来。
+#最后通过echo命令将这个定义的内容输出出来。
+
+
+#!/bin/bash
+OF=/var/my-backup-$(date +%Y%m%d).tgz
+tar-cZf $OF /home/me
+#参数OF是/var/目录下my-backup.tgz文件，而$()里的参数命令的意思是日期，是当日的时时日期，如20150807，通过tar命令把OF归档到/home/me 中保存。
