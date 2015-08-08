@@ -55,3 +55,72 @@ echo $STR
 OF=/var/my-backup-$(date +%Y%m%d).tgz
 tar-cZf $OF /home/me
 #参数OF是/var/目录下my-backup.tgz文件，而$()里的参数命令的意思是日期，是当日的时时日期，如20150807，通过tar命令把OF归档到/home/me 中保存。
+
+#!/bin/bash
+HELLO=Hello
+function hello{
+    local HELLO=World
+    echo $HELLO
+}
+echo $HELLO
+hello
+echo $HELLO
+#这是一个函数，一个定义本地变量的函数.(*执行的时候出现了local附近的语法错误，
+#所以还没深刻的明白这段字符的全部意思）
+
+#条件语句
+
+#!/bin/bash
+if [ "foo"="foo" ];
+then 
+   echo expression evaluated as true
+fi
+#这是一个if then的语句，意思是如果中括号里的参数相等的话，则输出表达式为真。
+ 
+#!/bin/bash
+if [ "foo"="foo" ];
+then
+   echo expression evaluated as true
+else
+   echo expression evaluated as false
+fi
+#这和上面的意思是一样的，只不过这是一个if then else条件语句，也就是如果参数相等
+#的话那么则执行then的输出，其他的则执行else的输出。fi是if语句里的结束终止的意思
+
+#!/bin/bash
+T1="foo"
+T2="bar"
+if [ "$T1"="$T2" ];
+then
+   echo expression evaluated as true
+else
+   echo expression evaluated as false
+fi
+#这个if语句在上面的俩个前提下给予了俩个赋好值的俩个参数然后比较。条件为真则是the#n,条件为假则实行else。
+
+#!/bin/bash
+for i in $(ls);
+do
+echo item:$i
+done
+#这是一个for语句。它的结构是“for  变量名  [in数值列表] do 若干个命令行 done。
+#上面意思是，把ls的含义赋值给i，然后输出的是item:$i,item是同类项的意思，也就是
+#把该文件下的文件列出来，（不包括隐藏文件）。
+
+
+#!/bin/bash
+for i in `seq 1 10`
+do
+  echo $i
+done
+#这个函数的意思是，把 1到10分别赋值给参数i ，然后将i的值列出来。
+
+#!/bin/bash
+COUNTER=0
+while [ $COUNTER -lt 10];
+do
+echo The counter is $COUNTER
+let COUNTER=COUNTER+1
+done
+#这是一个whie语句，上面是一个简单的计数器的脚本，先给变量COUNTER赋值，然后通过
+#while语句来给定条件，中括号里的意思是变量小于10.然后输出变量的值。
