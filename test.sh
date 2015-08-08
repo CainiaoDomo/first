@@ -58,15 +58,15 @@ tar-cZf $OF /home/me
 
 #!/bin/bash
 HELLO=Hello
-function hello{
+function hello(){
     local HELLO=World
     echo $HELLO
 }
 echo $HELLO
 hello
 echo $HELLO
-#这是一个函数，一个定义本地变量的函数.(*执行的时候出现了local附近的语法错误，
-#所以还没深刻的明白这段字符的全部意思）
+#这是一个函数，一个定义本地变量的函数.(在function 函数后面记得一定得加“（）”）
+
 
 #条件语句
 
@@ -117,10 +117,72 @@ done
 
 #!/bin/bash
 COUNTER=0
-while [ $COUNTER -lt 10];
+while [ $COUNTER -lt 10 ];
 do
 echo The counter is $COUNTER
 let COUNTER=COUNTER+1
 done
 #这是一个whie语句，上面是一个简单的计数器的脚本，先给变量COUNTER赋值，然后通过
 #while语句来给定条件，中括号里的意思是变量小于10.然后输出变量的值。
+
+#!/bin/bash
+COUNTER=20
+until [ $COUNTER -lt 10 ];
+do
+  echo COUNTER $COUNTER
+ let COUNTER-=1
+done
+#这是until语句脚本， 意思是只要参赛COUNTER比10小，那么则执行输出它的值，当它比
+#10小的时候则终止。（ps:在[]里面的语句里记得俩边加空格。echo COUNTER $COUNTER
+#里，第一个COUNTER没要什么含义，主要执行的是后面的参数$COUNTER,最后，“COUNTER-=
+#1,其实它就等同于COUNTER=$COUNTER-1)
+
+#!/bin/bash
+function quit(){
+	exit
+}
+function hello(){
+	echo Hello!
+}
+hello
+quit
+echo foo
+#这是关于function 函数功能的脚本，第一个函数的调用是退出。然后执行第二个函数的
+#调用，是输出你好，然后是退出，把最后输出的东西打印输出。
+
+#!/bin/bash
+function quit(){
+	exit
+}
+function e(){
+	echo $1
+}
+e Hello
+e World
+quit
+echo foo
+#第一个函数的调用是退出。执行第二个函数调用，给e一个参数变量，在这个函数调用
+#执行后，给e 给定俩个赋值，然后将给定义的值。然后退出，输出刚才给定的值。
+
+#界面
+
+#!/bin/bash
+OPTIONS="Hello Quit"
+select opt in $OPTIONS;
+do
+    if [ "$opt"="Quit" ];
+     then
+    echo done
+    exit
+    elif [ "$opt"="Hello" ];
+     then
+    echo Hello World
+     else
+      clear
+      echo bad option
+     fi
+    done
+#这是一个简单的界面选择脚本，先给定变量俩个赋值，然后给opt赋予变量的值，当你选
+#择Quit的时候则选择输出done， 然后退出，当你选择 Hello的时候 则输出 你好，世界
+#其余的选择则会输出清除的命令，然后输出 这是一个不好的选择。
+
