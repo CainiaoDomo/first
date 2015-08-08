@@ -186,4 +186,24 @@ do
 #择Quit的时候则选择输出done， 然后退出，当你选择 Hello的时候 则输出 你好，世界
 #其余的选择则会输出清除的命令，然后输出 这是一个不好的选择。
 
-===============================================================================
+#/bin/bash
+echo Please,enter your name
+read NAME
+echo "Hi $NAME!"
+#这是一个简单输出脚本。先给定一个输出条件，然后执行数据，再输出数据
+
+#/bin/bash
+echo Please,enter your firstname and lastname
+read FN LN
+echo "Hi! $LN,$FN!"
+#这个脚本的意思和上面差不多，只不过是多添加了一个参数你以前的名字。
+
+
+#!/bin/bash
+cd /dada &> /dev/null
+echo rv:$?
+cd $(pwd) &> /dev/null
+echo rv:$?
+
+#这个脚本是给我们演示程序返回值和特殊变量$?的脚本。&>这是标准输出重定向和错误
+#重定向的意思。然后$?是上一个输出的返回值的意思。
