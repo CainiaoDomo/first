@@ -2,11 +2,11 @@
 OPTIONS="Hello Quit"
 select opt in $OPTIONS;
 do
-if [ "$opt"="Quit" ];
+if [ "$opt" = "Quit" ];
 then
   echo done
 exit
-  elif [ "$opt"="Hello" ];
+  elif [ "$opt" = "Hello" ];
 then
   echo Hello World
 else

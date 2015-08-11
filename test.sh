@@ -207,3 +207,33 @@ echo rv:$?
 
 #这个脚本是给我们演示程序返回值和特殊变量$?的脚本。&>这是标准输出重定向和错误
 #重定向的意思。然后$?是上一个输出的返回值的意思。
+
+#!/bin/bash
+DBS=`mysql -uroot -e"show datebases"`
+for b in $DBS
+do
+	mysql -uroot -e"show tables from $b"
+done
+#这是一个显示所有数据库的小脚本，同时考虑改变的mysql命令使用一个有效的用户名
+#和密码。
+
+#!/bin/bash
+S1='string'
+S2='string'
+if [ $S1=$S2 ];
+then
+    echo "S1('$S1')is not equal to S2('$S2')"
+fi
+if [ $S1=$S1 ];
+then
+    echo "S1('$S1') is equal to S1('$S1')"
+fi
+
+#!/bin/bash
+SRCD="/home/"
+TGTD="/var/backups/"
+OF=home-$(date +%Y%m%d).tgz
+tar -czf $TGTD$OF $SRCD
+#这是一个简单的归档脚本，将/var/backups/  与home目录下的时时文件归档起来。
+
+
